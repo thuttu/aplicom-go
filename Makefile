@@ -1,66 +1,55 @@
-export GO111MODULE = on
-
 .PHONY: all
 all: \
-	circleci-config-validate \
 	go-lint \
 	go-test \
 	go-mod-tidy \
+	go-review \
 	git-verify-submodules \
-	git-verify-nodiff \
-	go-review
+	git-verify-nodiff
 
 .PHONY: clean
 clean:
 	rm -rf build
-	rm -rf output
 
 .PHONY: build
 build:
 	@git submodule update --init --recursive $@
+
+include build/rules.mk
+build/rules.mk: build
+	@# included in submodule: build
 
 # go-mod-tidy: update go modules
 .PHONY: go-mod-tidy
 go-mod-tidy:
 	go mod tidy -v
 
-include build/rules.mk
-build/rules.mk: build
-
 # go-lint: lint Go files
 .PHONY: go-lint
 go-lint: $(GOLANGCI_LINT)
-	$(GOLANGCI_LINT) run --enable-all
+	# funlen: disabled
+	# lll: disabled due to long go:generate directives
+	# maligned: disabled to avoid re-arranging the packet struct
+	$(GOLANGCI_LINT) run --enable-all --disable funlen,lll,maligned
 
-# go-test: run Go test 
+# go-test: run Go test
 .PHONY: go-test
 go-test:
 	go test -count=1 -race -cover ./...
 
 .PHONY: go-review
-go-review: $(GOREVIEW)
-	$(GOREVIEW) -c 1 ./...
+go-review: $(GOBIN)
+	$(GOBIN) -m -run github.com/einride/goreview/cmd/goreview -c 1 ./...
 
-# circleci-config-validate: validate CircleCI config
-.PHONY: circleci-config-validate
-circleci-config-validate: $(CIRCLECI)
-	$(CIRCLECI) config validate
+.PHONY: go-stringer
+go-stringer: \
+	pkg/dprotocol/digitalinput_string.go \
+	pkg/dprotocol/eventid_string.go \
+	pkg/dprotocol/fieldselector_string.go \
+	pkg/dprotocol/gpsflag_string.go \
+	pkg/dprotocol/output_string.go \
+	pkg/dprotocol/radioaccesstechnology_string.go \
+	pkg/dprotocol/stateflag_string.go
 
-# go-run-server-local:
-.PHONY: go-run-server-local
-go-run-server-local:
-	export GOOGLE_CLOUD_PROJECT=einride-portal && \
-	go run ./cmd/aplicom-go/main.go --port 5144
-
-#  send-local-test-data:
-.PHONY: send-local-test-data
-send-local-test-data:
-	./cmd/scripts/send-test-data.sh
-
-.PHONY: deploy
-deploy:
-	cd ./cmd/aplicom-go && GOOS=linux GOARCH=amd64 go build -o ../../output/aplicom-go
-	gcloud compute scp --project "einride-portal" --zone "europe-north1-a"  ./output/aplicom-go root@aplicom-server:~
-	gcloud compute ssh --project "einride-portal" --zone "europe-north1-a"  root@aplicom-server \
-	--command 'systemctl stop aplicom-go && sleep 4 && cp aplicom-go /usr/local/bin && systemctl start aplicom-go'
-
+%_string.go: %.go
+	go generate $<
