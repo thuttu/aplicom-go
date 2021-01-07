@@ -2,7 +2,7 @@ package dprotocol
 
 type DigitalInput uint16
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type DigitalInput -trimprefix DigitalInput
+//go:generate stringer -type DigitalInput -trimprefix DigitalInput
 
 const (
 	DigitalInput1        DigitalInput = 0b0000_0000_0000_0001

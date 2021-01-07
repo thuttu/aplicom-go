@@ -2,7 +2,7 @@ package dprotocol
 
 type GPSFlag uint8
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type GPSFlag -trimprefix GPSFlag
+//go:generate stringer -type GPSFlag -trimprefix GPSFlag
 
 const (
 	GPSFlagSpeedOverflow      GPSFlag = 0b0000_0001

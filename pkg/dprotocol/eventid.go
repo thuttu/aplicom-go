@@ -2,7 +2,7 @@ package dprotocol
 
 type EventID uint8
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type EventID -trimprefix EventID
+//go:generate stringer -type EventID -trimprefix EventID
 
 const (
 	EventIDInputChanged                   EventID = 0x02
@@ -61,7 +61,7 @@ const (
 	EventIDGarminEvent                    EventID = 0xa0
 	EventIDCardDL                         EventID = 0xaa
 	EventIDTachoDL                        EventID = 0xab
-	EventIDTemperatureDataEvent           EventID = 0Xba
+	EventIDTemperatureDataEvent           EventID = 0xba
 	EventIDEBSDataEvent                   EventID = 0xbc
 	EventIDCOPUpdate                      EventID = 0xff
 )

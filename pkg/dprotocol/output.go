@@ -2,7 +2,7 @@ package dprotocol
 
 type Output uint8
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type Output -trimprefix Output
+//go:generate stringer -type Output -trimprefix Output
 
 const (
 	OutputOff      Output = 0b00

@@ -3,7 +3,7 @@ package dprotocol
 // FieldSelector is a mask which enables optimization of sent data by dropping out unnecessary fields.
 type FieldSelector uint32
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type FieldSelector -trimprefix FieldSelector
+//go:generate stringer -type FieldSelector -trimprefix FieldSelector
 
 const (
 	FieldSelectorGPSFlags              FieldSelector = 0x000008

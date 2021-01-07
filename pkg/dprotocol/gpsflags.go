@@ -1,3 +1,4 @@
+// nolint: lll
 package dprotocol
 
 // GPSFlags validity bits combination information.

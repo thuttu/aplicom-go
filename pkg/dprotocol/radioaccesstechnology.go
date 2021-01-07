@@ -2,7 +2,7 @@ package dprotocol
 
 type RadioAccessTechnology uint8
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type RadioAccessTechnology -trimprefix RadioAccessTechnology
+//go:generate stringer -type RadioAccessTechnology -trimprefix RadioAccessTechnology
 
 const (
 	RadioAccessTechnologyUnknown RadioAccessTechnology = 0b000

@@ -5,14 +5,15 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestScanPackets(t *testing.T) {
+	t.Parallel()
 	sc := bufio.NewScanner(bytes.NewReader(getExampleData()))
 	sc.Split(ScanPackets)
-	require.True(t, sc.Scan())
-	require.Equal(t, getExampleData(), sc.Bytes())
-	require.False(t, sc.Scan())
-	require.Nil(t, sc.Err())
+	assert.Assert(t, sc.Scan())
+	assert.DeepEqual(t, getExampleData(), sc.Bytes())
+	assert.Assert(t, !sc.Scan())
+	assert.NilError(t, sc.Err())
 }

@@ -3,11 +3,12 @@ package dprotocol
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func TestHeader_UnmarshalBinary(t *testing.T) {
+	t.Parallel()
 	var actual Header
-	require.NoError(t, actual.UnmarshalBinary(getExampleData()))
-	require.Equal(t, getExampleHeader(), actual)
+	assert.NilError(t, actual.UnmarshalBinary(getExampleData()))
+	assert.DeepEqual(t, getExampleHeader(), actual)
 }

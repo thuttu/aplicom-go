@@ -3,7 +3,7 @@ package dprotocol
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"gotest.tools/v3/assert"
 )
 
 func BenchmarkPacket_UnmarshalBinary(b *testing.B) {
@@ -17,7 +17,8 @@ func BenchmarkPacket_UnmarshalBinary(b *testing.B) {
 }
 
 func TestPacket_UnmarshalBinary(t *testing.T) {
+	t.Parallel()
 	var actual Packet
-	require.NoError(t, actual.UnmarshalBinary(getExampleData()))
-	require.Equal(t, getExamplePacket(), actual)
+	assert.NilError(t, actual.UnmarshalBinary(getExampleData()))
+	assert.DeepEqual(t, getExamplePacket(), actual)
 }

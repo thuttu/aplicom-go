@@ -23,7 +23,7 @@ const (
 	lengthOfPacketHeader     = 14
 )
 
-// header field indices
+// header field indices.
 const (
 	indexOfPacketIdentifier = 0
 	indexOfHeaderFlags      = indexOfPacketIdentifier + lengthOfPacketIdentifier

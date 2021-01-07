@@ -1,6 +1,6 @@
 package dprotocol
 
-//go:generate gobin -m -run golang.org/x/tools/cmd/stringer -type StateFlag -trimprefix StateFlag
+//go:generate stringer -type StateFlag -trimprefix StateFlag
 
 type StateFlag uint32
 
