@@ -38,14 +38,7 @@ go-test:
 		./...
 
 .PHONY: go-generate
-go-generate: \
-	pkg/dprotocol/digitalinput_string.go \
-	pkg/dprotocol/eventid_string.go \
-	pkg/dprotocol/fieldselector_string.go \
-	pkg/dprotocol/gpsflag_string.go \
-	pkg/dprotocol/output_string.go \
-	pkg/dprotocol/radioaccesstechnology_string.go \
-	pkg/dprotocol/stateflag_string.go
+go-generate: $(shell grep -rl '^//go:generate')
 
 %_string.go: %.go $(stringer)
 	$(info generating $@.go)
