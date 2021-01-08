@@ -3,6 +3,7 @@ package dprotocol_test
 import (
 	"fmt"
 	"net"
+	"time"
 
 	"go.einride.tech/aplicom/dprotocol"
 )
@@ -23,7 +24,12 @@ func ExampleScanner() {
 		go func() {
 			sc := dprotocol.NewScanner(conn)
 			for sc.ScanPacket() {
-				fmt.Println(sc.Packet().Header.UnitID, sc.Packet().EventID, sc.Packet().GPSTime)
+				fmt.Printf(
+					"Unit ID: %d Event ID: %d GPS Time: %s\n",
+					sc.Packet().Header.UnitID,
+					sc.Packet().EventID,
+					sc.Packet().GPSTime.Format(time.RFC3339),
+				)
 			}
 			if sc.Err() != nil {
 				panic(err) // TODO: Handle error.
