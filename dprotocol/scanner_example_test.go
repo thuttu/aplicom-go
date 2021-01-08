@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/einride/aplicom-go/dprotocol"
+	"go.einride.tech/aplicom/dprotocol"
 )
 
 func ExampleScanner() {

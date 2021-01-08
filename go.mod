@@ -1,4 +1,4 @@
-module github.com/einride/aplicom-go
+module go.einride.tech/aplicom
 
 go 1.13
 
