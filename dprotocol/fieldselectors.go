@@ -1,13 +1,15 @@
 package dprotocol
 
-// FieldSelector is a mask which enables optimization of sent data by dropping out unnecessary fields.
+// FieldSelectors is a mask which enables optimization of sent data by dropping out unnecessary fields.
 type FieldSelectors uint32
 
+// Has returns true if the provided FieldSelector is included among the field selectors.
 func (f FieldSelectors) Has(selector FieldSelector) bool {
 	return FieldSelector(f)&selector == selector
 }
 
-func (f FieldSelectors) Length() int {
+// SnapshotLength returns the length in bytes of a snapshot with the current field selectors.
+func (f FieldSelectors) SnapshotLength() int {
 	result := lengthOfEventID + lengthOfEventInformation
 	if f.Has(FieldSelectorGPSFlags) {
 		result += lengthOfGPSFlags

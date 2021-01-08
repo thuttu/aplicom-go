@@ -20,5 +20,5 @@ func TestPacket_UnmarshalBinary(t *testing.T) {
 	t.Parallel()
 	var actual Packet
 	assert.NilError(t, actual.UnmarshalBinary(getExampleData()))
-	assert.DeepEqual(t, getExamplePacket(), actual)
+	assert.DeepEqual(t, getExamplePacket(), &actual)
 }

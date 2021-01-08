@@ -5,6 +5,7 @@ type FieldSelector uint32
 
 //go:generate stringer -type FieldSelector -trimprefix FieldSelector
 
+// FieldSelector values.
 const (
 	FieldSelectorGPSFlags              FieldSelector = 0x000008
 	FieldSelectorTime                  FieldSelector = 0x000004

@@ -3,6 +3,7 @@ package dprotocol
 // Version represents a D protocol version.
 type Version uint8
 
+// Version values.
 const (
 	// Version1 is deprecated.
 	Version1 Version = 1

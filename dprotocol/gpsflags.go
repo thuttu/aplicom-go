@@ -31,6 +31,7 @@ package dprotocol
 //  +---------+---------+------------+-------------------+------------+---------------+-----------+-------+
 type GPSFlags uint8
 
+// Has returns true if the provided flag is set (logical high).
 func (g GPSFlags) Has(flag GPSFlag) bool {
 	return GPSFlag(g)&flag == flag
 }

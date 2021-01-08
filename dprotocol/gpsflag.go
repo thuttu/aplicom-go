@@ -1,9 +1,11 @@
 package dprotocol
 
+// GPSFlag represents a GPS flag.
 type GPSFlag uint8
 
 //go:generate stringer -type GPSFlag -trimprefix GPSFlag
 
+// GPSFlag values.
 const (
 	GPSFlagSpeedOverflow      GPSFlag = 0b0000_0001
 	GPSFlagMaxSpeedOverflow   GPSFlag = 0b0000_0010

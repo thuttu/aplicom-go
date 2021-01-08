@@ -7,6 +7,7 @@ import (
 
 const packetIdentifier = 'D'
 
+// ScanPackets is a bufio.Scanner function that splits on D protocol packets.
 func ScanPackets(data []byte, _ bool) (advance int, token []byte, err error) {
 	startIndex := bytes.IndexByte(data, packetIdentifier)
 	switch {

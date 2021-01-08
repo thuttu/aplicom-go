@@ -1,9 +1,11 @@
 package dprotocol
 
+// EventID represents an event ID.
 type EventID uint8
 
 //go:generate stringer -type EventID -trimprefix EventID
 
+// EventID values.
 const (
 	EventIDInputChanged                   EventID = 0x02
 	EventIDOutputChanged                  EventID = 0x03

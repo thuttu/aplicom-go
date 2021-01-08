@@ -1,8 +1,9 @@
 package dprotocol
 
-//go:generate stringer -type StateFlag -trimprefix StateFlag
-
+// StateFlag represents a state flag.
 type StateFlag uint32
+
+//go:generate stringer -type StateFlag -trimprefix StateFlag
 
 const (
 	StateFlagCardDL         StateFlag = 0x01

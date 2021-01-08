@@ -7,10 +7,14 @@ import (
 
 // Header represents a D protocol packet header.
 type Header struct {
-	Flags          HeaderFlags
+	// Flags contains the header flags.
+	Flags HeaderFlags
+	// SnapshotLength is the length of the full snapshot in bytes.
 	SnapshotLength uint16
+	// FieldSelectors contains the field selectors.
 	FieldSelectors FieldSelectors
-	UnitID         uint64
+	// UnitID is the ID of the unit that sent the packet.
+	UnitID uint64
 }
 
 // header field lengths.
@@ -35,6 +39,7 @@ const (
 // compile-time assertion on header structure.
 var _ [indexOfSelectorBits + lengthOfSelectorBits]struct{} = [lengthOfPacketHeader]struct{}{}
 
+// UnmarshalBinary unmarshals the header from the provided bytes.
 func (p *Header) UnmarshalBinary(b []byte) error {
 	if len(b) < lengthOfPacketHeader {
 		return fmt.Errorf("invalid packet header length: %v", len(b))

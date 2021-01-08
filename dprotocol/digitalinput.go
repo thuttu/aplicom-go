@@ -1,9 +1,11 @@
 package dprotocol
 
+// DigitalInput represents a single digital input.
 type DigitalInput uint16
 
 //go:generate stringer -type DigitalInput -trimprefix DigitalInput
 
+// Digital inputs.
 const (
 	DigitalInput1        DigitalInput = 0b0000_0000_0000_0001
 	DigitalInput2        DigitalInput = 0b0000_0000_0000_0010
