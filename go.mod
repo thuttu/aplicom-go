@@ -2,4 +2,4 @@ module go.einride.tech/aplicom
 
 go 1.13
 
-require gotest.tools/v3 v3.0.3
+require gotest.tools/v3 v3.1.0
