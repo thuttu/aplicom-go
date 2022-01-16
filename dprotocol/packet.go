@@ -89,10 +89,10 @@ type Packet struct {
 	// Unit depends on configuration. Default is number of pulses.
 	PulseCounter2 uint32
 
-	// Trip1DistanceMeters is the distance travelled in meters since trip meter was reset.
+	// Trip1DistanceMeters is the distance traveled in meters since trip meter was reset.
 	Trip1DistanceMetres uint32
 
-	// Trip2DistanceMeters is the distance travelled in meters since trip meter was reset.
+	// Trip2DistanceMeters is the distance traveled in meters since trip meter was reset.
 	Trip2DistanceMetres uint32
 
 	// OutputStatus contains the status of outputs.

@@ -1,34 +1,24 @@
-# Aplicom Go
+Aplicom Go
+==========
 
-[![PkgGoDev][pkg-badge]][pkg]
-[![GoReportCard][report-badge]][report]
-[![Codecov][codecov-badge]][codecov]
+[![PkgGoDev](https://pkg.go.dev/badge/go.einride.tech/aplicom)](https://pkg.go.dev/go.einride.tech/aplicom) [![GoReportCard](https://goreportcard.com/badge/go.einride.tech/aplicom)](https://goreportcard.com/report/go.einride.tech/aplicom) [![Codecov](https://codecov.io/gh/einride/aplicom-go/branch/master/graph/badge.svg)](https://codecov.io/gh/einride/aplicom-go)
 
-[pkg-badge]: https://pkg.go.dev/badge/go.einride.tech/aplicom
-[pkg]: https://pkg.go.dev/go.einride.tech/aplicom
-[report-badge]: https://goreportcard.com/badge/go.einride.tech/aplicom
-[report]: https://goreportcard.com/report/go.einride.tech/aplicom
-[codecov-badge]: https://codecov.io/gh/einride/aplicom-go/branch/master/graph/badge.svg
-[codecov]: https://codecov.io/gh/einride/aplicom-go
+Go SDK for [Aplicom](https://www.aplicom.com) telematics devices.
 
-Go SDK for [Aplicom][aplicom] telematics devices.
-
-[aplicom]: https://www.aplicom.com
-
-## Installing
+Installing
+----------
 
 ```bash
 $ go get go.einride.tech/aplicom
 ```
 
-## Documentation
+Documentation
+-------------
 
-See the [Aplicom Extranet][aplicom-extranet] for device-specific and
-protocol-specific documentation.
+See the [Aplicom Extranet](https://www.aplicom.com/extranet/) for device-specific and protocol-specific documentation.
 
-[aplicom-extranet]: https://www.aplicom.com/extranet/
-
-## Examples
+Examples
+--------
 
 ### Listening for D protocol packets
 
@@ -64,7 +54,7 @@ func main() {
 					sc.Packet().Header.UnitID,
 					sc.Packet().EventID,
 					sc.Packet().GPSTime.Format(time.RFC3339),
-        )
+				)
 			}
 			if sc.Err() != nil {
 				panic(err) // TODO: Handle error.
